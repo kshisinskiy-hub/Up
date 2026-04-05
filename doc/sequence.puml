@@ -1,0 +1,22 @@
+@startuml
+actor Carl
+participant House
+participant Balloon
+participant FlightController
+
+Carl -> House: throwFurniture(weight=50)
+activate House
+House -> House: reduceWeight(50)
+House --> Carl: weight decreased
+deactivate House
+
+Carl -> FlightController: checkFlightStatus()
+activate FlightController
+FlightController -> House: getWeight()
+House --> FlightController: current weight
+FlightController -> Balloon: getTotalLift()
+Balloon --> FlightController: total lift
+FlightController -> FlightController: compare lift vs weight
+FlightController --> Carl: status (Flying / Grounded)
+deactivate FlightController
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+class House {
+  - weight : int
+  + reduceWeight(amount: int)
+  + getWeight() : int
+}
+
+class Balloon {
+  - liftCapacity : int
+  + getLiftCapacity() : int
+}
+
+class FlightController {
+  + calculateTotalLift(balloons: List<Balloon>) : int
+  + calculateTotalWeight(house: House) : int
+}
+
+House --> Balloon : uses
+FlightController --> House
+FlightController --> Balloon
+@enduml

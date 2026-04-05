@@ -1,0 +1,31 @@
+@startuml
+[*] --> OnGround
+
+OnGround --> Flying : totalLift > totalWeight / Подъем
+Flying --> Descending : потеря шаров / уменьшение lift
+Descending --> OnGround : totalLift < totalWeight / Приземление
+Descending --> Flying : сброс мебель / reduceWeight() + lift > weight
+Flying --> Flying : нормальный полет
+OnGround --> OnGround : ждем действий Карла
+
+state OnGround {
+  [*] --> Grounded
+  Grounded --> CheckingLift : Карл надул шары
+  CheckingLift --> Flying : if lift > weight
+  CheckingLift --> Grounded : if lift <= weight
+}
+
+state Flying {
+  [*] --> Airborne
+  Airborne --> LosingBalloons : потеря шаров
+  LosingBalloons --> Descending : lift < weight
+}
+
+state Descending {
+  [*] --> Falling
+  Falling --> ReducingWeight : Карл выбрасывает мебель
+  ReducingWeight --> Flying : если lift > weight
+  ReducingWeight --> OnGround : если lift всё ещё < weight
+}
+
+@enduml

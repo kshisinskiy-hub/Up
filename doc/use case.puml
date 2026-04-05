@@ -1,0 +1,18 @@
+@startuml
+actor "Карл" as Carl
+actor "Природа" as Nature
+
+usecase "Надуть шары" as UC1
+usecase "Сбросить мебель" as UC2
+usecase "Лететь к водопаду" as UC3
+usecase "Потеря шаров" as UC4
+
+Carl --> UC1
+Carl --> UC2
+Carl --> UC3
+
+Nature --> UC4
+
+UC4 <. UC1 : <<extend>>
+UC2 <. UC3 : <<include>>
+@enduml

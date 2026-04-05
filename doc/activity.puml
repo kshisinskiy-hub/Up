@@ -1,0 +1,24 @@
+@startuml
+start
+:Карл надувает шары;
+:Рассчитать totalLift;
+:Рассчитать totalWeight;
+
+if (totalLift > totalWeight?) then (да)
+  :Дом взлетает;
+  :Летим к водопаду;
+  :Прибыли;
+  stop
+else (нет)
+  :Дом на земле;
+  :Карл выбрасывает мебель;
+  :House.reduceWeight();
+  :Пересчитать totalWeight;
+  repeat
+    :Проверить totalLift > totalWeight?;
+  repeat while (нет?) is (да)
+  -> yes;
+  :Дом взлетает;
+  stop
+endif
+@enduml
